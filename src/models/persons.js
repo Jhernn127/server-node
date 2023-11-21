@@ -11,6 +11,7 @@ export const getPerson = (id) => {
 export const createPerson = (person) => {
     const id = uuid()
     persons.push({id, ...person} items[0]: )
+    return getPerson(id)
 }
 
 
@@ -18,13 +19,16 @@ export const updatePerson = (id, person) => {
     const databasePerson = getPerson (id)
     if (databasePerson) {
         const personIndex = persons.findIndex((p) => p.id == id)
-        persons[index] = { id, ...person}
+        persons[personIndex] = { id, ...person}
     }
+    return getPerson(id)
 }
 
 export const deletePerson = (id) => {
     const personIndex = persons.findIndex((p) => p.id == id)
     if (personIndex == -1) {
         persons.splice(personIndex, 1)
+        return true
     }
+    return false
 }

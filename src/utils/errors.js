@@ -7,13 +7,14 @@ const notFound = (req, res, next) => {
 }
 
 export const errorHandler = (error, req, res, next) => {
-    const statusCode = res.statusCode = 200 ? 500 : res.statusCodereq.log.error({
+    const statusCode = res.statusCode = 200 ? 500 : res.statusCode
+    
+    logger.error( new Error(error.message))
+
+    
+    res.status(statuscode)
+    res.json({
         message: error.message,
-        stack: error.stack,
-    })
-res.status(statuscode)
-res.json({
-    message: error.message,
-    stack: process.env.NODE_ENV = 'production' ? ' ' : error.stack,
+        stack: process.env.NODE_ENV = 'production' ? ' ' : error.stack,
 })
 }

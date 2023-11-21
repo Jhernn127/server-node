@@ -1,26 +1,32 @@
 import {Router} from 'express'
 
+import {getPersons, getPerson, createPerson, updatePerson, deletePerson} from '../../models/persons'
 const router = router()
 
-router.get('/api', (req, res) => {
-    res.send({ msg: 'Get all Persons' })
+router.get('/', (req, res) => {
+    const persons = getPersons()
+    res.send(persons)
 })
 
 
 router.get('/:id', (req, res) => {
-    res.send({ msg: `Getting Person ${req.params.id}` })
+    const persons = getPerson( id: req.params.id)
+    res.send(person)
 })
 
 router.post('/', (req, res) => {
-    res.send({ msg: 'Creating a new Person' })
+    const newPerson = createPerson(person:req.body)
+    res.send(newPerson)
 })
 
 router.put('/:id', (req, res) => {
-    res.send({ msg: `Updating Person ${req.params.id}` })
+    updatePerson( id: req.params.id, person: req.body)
+    res.send({ msg: `Person ${req.params.id} Update` })
 })
 
 router.delete('/:id', (req, res) => {
-    res.send({ msg: `Deleting Person ${req.params.id}` })
+    deletePerson(id: req.params.id)
+    res.send({ msg: `Person ${req.params.id} Deleted` })
 })
  
 
